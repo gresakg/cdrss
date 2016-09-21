@@ -1,6 +1,6 @@
 /* 
-	Author: Milan Stojanov
-	Author URL: http://www.milanstojanov.iz.rs
+	Author: Milan Stojanov, Gregor Grešak
+	Author URL: http://www.milanstojanov.iz.rs, http://gresak.net
 */
 
 
@@ -13,6 +13,7 @@
 		titleTag: 'h3>a',		
 		bodyTag: 'p',
 		date:false,
+                showText: true,
 		rmText: false,
 		boxTitle: "",
 		boxTitleTag: "h2",
@@ -57,7 +58,10 @@
 				feeds += formatTitle(e.title, e.link);
 				if(config.date) 
 					feeds += "<small>" +  formatDate(e.publishedDate) + "</small>";
-				feeds += "<" + config.bodyTag + "><a href='" + e.link + "?" + config.utmCode + "'>" + image +  e.contentSnippet + "</a></" + config.bodyTag + ">";
+				feeds += "<" + config.bodyTag + "><a href='" + e.link + "'>" + image;
+                                if(config.showText)
+                                            feeds +=  e.contentSnippet; 
+                                feeds += "</a></" + config.bodyTag + ">";
 				if(config.rmText) 
 					feeds += readMore(e.link);
 				feeds +="</" + config.feedTag + ">";
