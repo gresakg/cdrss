@@ -16,6 +16,7 @@
 		rmText: false,
 		boxTitle: "",
 		boxTitleTag: "h2",
+		utmCode: false,
 		error: "Something wrong happened!"
 
 	};
@@ -56,7 +57,7 @@
 				feeds += formatTitle(e.title, e.link);
 				if(config.date) 
 					feeds += "<small>" +  formatDate(e.publishedDate) + "</small>";
-				feeds += "<" + config.bodyTag + "><a href='" + e.link + "'>" + image +  e.contentSnippet + "</a></" + config.bodyTag + ">";
+				feeds += "<" + config.bodyTag + "><a href='" + e.link + "?" + config.utmCode + "'>" + image +  e.contentSnippet + "</a></" + config.bodyTag + ">";
 				if(config.rmText) 
 					feeds += readMore(e.link);
 				feeds +="</" + config.feedTag + ">";
