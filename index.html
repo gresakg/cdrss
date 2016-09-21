@@ -6,14 +6,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Your page title</title>
+    <title>CDRSS Demo</title>
 
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
     <script type="text/javascript" src="cdrss.jquery.js"></script>
+	<style>
+	p, h3 { clear: both; }
+	body { max-width: 960px; margin: 0 auto; }	
+	</style>
 </head>
-
-<h1>test</h1>
+<body>
+<h1>CDRSS Demo</h1>
 	<div id="portalprrss"></div>
     <script>$('#portalprrss').cdrss('http://gresak.net/feed',{ limit:4, rmText: "More", boxTitle: "Gresak.net", boxTitleTag: "p" });</script>
 
