@@ -34,15 +34,16 @@
 				return;
 			}				
 			
-			var feedUrl = "http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&callback=?&q=" + src+ "&num=" + config.limit;
+			var feedUrl = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20feed%20where%20url%3D'http%3A%2F%2Fover.net%2Ffeed'&format=json&diagnostics=false&callback=";
 			
 			$.ajax({
 				type: 'GET',
 				url: feedUrl,				
-				dataType: 'jsonp'								
+				//dataType: 'jsonp'								
 			}).done(function(data) {
-				if (data.responseStatus == 200) {						
-					displayData(data.responseData.feed);						
+				console.log(data.query);
+				if (data.query.count  > 0) {		
+					displayData(data.query.results.item);						
 				} else {
 					$this.append('<p class="error">' + config.error + "</p>");
 				};
@@ -51,16 +52,17 @@
 
 		var displayData = function(feed) {
 			var feeds = '';
-			$.each(feed.entries, function(i, e) {
-				var image = $(e.content)[0].outerHTML;
+			$.each(feed, function(i, e) {
+				var image = $(e.description)[0].outerHTML;
+				var contentSnippet =  $("<div>"+e.description+"</div>").text();
 				feeds +="<" + config.feedTag + ">";
 
 				feeds += formatTitle(e.title, e.link);
 				if(config.date) 
-					feeds += "<small>" +  formatDate(e.publishedDate) + "</small>";
+					feeds += "<small>" +  formatDate(e.pubDate) + "</small>";
 				feeds += "<" + config.bodyTag + "><a href='" + e.link + config.utmCode + "'>" + image;
                                 if(config.showText)
-                                            feeds +=  e.contentSnippet; 
+                                            feeds +=  contentSnippet; 
                                 feeds += "</a></" + config.bodyTag + ">";
 				if(config.rmText) 
 					feeds += readMore(e.link);
