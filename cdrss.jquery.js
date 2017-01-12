@@ -17,7 +17,7 @@
 		rmText: false,
 		boxTitle: "",
 		boxTitleTag: "h2",
-		utmCode: false,
+		utmCode: "",
 		error: "Something wrong happened!"
 
 	};
@@ -58,7 +58,7 @@
 				feeds += formatTitle(e.title, e.link);
 				if(config.date) 
 					feeds += "<small>" +  formatDate(e.publishedDate) + "</small>";
-				feeds += "<" + config.bodyTag + "><a href='" + e.link + "'>" + image;
+				feeds += "<" + config.bodyTag + "><a href='" + e.link + config.utmCode + "'>" + image;
                                 if(config.showText)
                                             feeds +=  e.contentSnippet; 
                                 feeds += "</a></" + config.bodyTag + ">";
@@ -77,19 +77,19 @@
 			var goodTitle;
 			if(config.titleTag.indexOf('>') == -1 ) {
 				if(config.titleTag == "a") 
-					goodTitle = '<a href="' + url + '">' + title + '</a>';
+					goodTitle = '<a href="' + url + config.utmCode +  '">' + title + '</a>';
 				else
 					goodTitle = '<' + config.titleTag + '>' + title + '</' + config.titleTag + '>';
 			} else {
 				var tags = config.titleTag.split('>'),
 					firstTag = $.trim(tags[0]);				
-				goodTitle = '<' + firstTag + '><a href="'+ url +'">' +  title + '</a></' + firstTag + '>';
+				goodTitle = '<' + firstTag + '><a href="'+ url + config.utmCode +  '">' +  title + '</a></' + firstTag + '>';
 			}
 			return goodTitle;
 		}		
 
 		var readMore = function(url) {
-			var link = '<a href="' + url + '">'+ config.rmText +'</a>'	
+			var link = '<a href="' + url + config.utmCode +   '">'+ config.rmText +'</a>'	
 			// TODO if(config.rmClass) { Add class to the element and return! }				
 			return link;
 		}
@@ -108,3 +108,4 @@
 	};
 
 }(jQuery));
+
