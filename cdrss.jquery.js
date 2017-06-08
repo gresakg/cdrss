@@ -34,7 +34,7 @@
 				return;
 			}				
 			
-			var feedUrl = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20feed%20where%20url%3D'" + src + "'&format=json&diagnostics=false&callback=";
+			var feedUrl = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20feed%20where%20url%3D'" + src +"'%20limit%20" + config.limit + "&format=json&callback=";
 			
 			$.ajax({
 				type: 'GET',
