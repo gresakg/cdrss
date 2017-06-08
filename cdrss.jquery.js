@@ -41,12 +41,15 @@
 				url: feedUrl,				
 				//dataType: 'jsonp'								
 			}).done(function(data) {
-				console.log(data.query);
+				//console.log(data.query);
 				if (data.query.count  > 0) {		
 					displayData(data.query.results.item);						
 				} else {
+					// we have an error. Should we output it or just log it?
 					if(config.error) {
 						$this.append('<p class="error">' + config.error + "</p>");
+					} else {
+						console.log("CDRSS error: no data returned.");
 					}
 				};
 			}); 
