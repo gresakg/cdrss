@@ -45,7 +45,9 @@
 				if (data.query.count  > 0) {		
 					displayData(data.query.results.item);						
 				} else {
-					$this.append('<p class="error">' + config.error + "</p>");
+					if(config.error) {
+						$this.append('<p class="error">' + config.error + "</p>");
+					}
 				};
 			}); 
 		}
